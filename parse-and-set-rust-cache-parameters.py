@@ -23,6 +23,10 @@ def main():
         # against system packages, like openssl, can break when we use the same cache across different
         # versions of the runner OS. For example, when going from Ubuntu 20.04 to 22.04, we move from
         # OpenSSL 1.1.x to 3.x.
+
+        # cache key cannot contain spaces
+        os_version = os_version.replace(" ", "-")
+
         parameters["key"] += "-{}".format(os_version)
     else:
         # Otherwise we want to include the `cross` binary's hash. The Docker images that `cross`
